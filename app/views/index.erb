@@ -4,8 +4,18 @@
         <title>Is Amogh Drunk?</title>
     </head>
     <body>
-      <div class="answer">
-        <h1>YES</h1>
+      <div class="status">
+        <h1><%= @drunk ? "YES" : "NO" %></h1>
       </div>
+
+      <% if @witness %>
+        <div class="last-witnessed">
+          <%
+            witnessed_at = @witness.witnessed_at.in_time_zone("Central Time (US & Canada)").strftime("%b %e %l:%M %p %Z")
+            witnessed_by = @witness.name || "anonymous"
+          %>
+          <%= "Last reported drunk on #{witnessed_at} by #{witnessed_by}" %>
+        </div>
+      <% end %>
     </body>
 </html>

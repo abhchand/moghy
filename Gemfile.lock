@@ -13,9 +13,15 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    coderay (1.1.1)
     concurrent-ruby (1.0.2)
     i18n (0.7.0)
+    method_source (0.8.2)
     minitest (5.9.1)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     rack (1.6.5)
     rack-protection (1.5.3)
       rack
@@ -27,6 +33,7 @@ GEM
     sinatra-activerecord (2.0.11)
       activerecord (>= 3.2)
       sinatra (~> 1.0)
+    slop (3.6.0)
     sqlite3 (1.3.12)
     thread_safe (0.3.5)
     tilt (2.0.5)
@@ -38,6 +45,8 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  activesupport (~> 5.0, >= 5.0.0.1)
+  pry
   rake
   sinatra (~> 1.4, >= 1.4.7)
   sinatra-activerecord
