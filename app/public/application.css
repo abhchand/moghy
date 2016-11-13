@@ -1,12 +1,12 @@
 body { font-family: 'Open Sans'; }
 h1 { font-size: 20px; }
 
-
 .content {
   width: 980px;
   margin: auto;
   text-align: center;
 }
+
 .status h1 { font-size: 80px; }
 .picture { height: 250px; }
 .picture img { width: 250px; }
@@ -24,7 +24,7 @@ h1 { font-size: 20px; }
   resize: none;
   text-align: left;
   width: 150px;
-  height: 30px;
+  height: 25px;
 }
 
 .witness-submit {
@@ -43,4 +43,5 @@ h1 { font-size: 20px; }
   text-align: center;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   vertical-align: middle;
+  margin: 10px 0;
 }
