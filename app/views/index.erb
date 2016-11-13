@@ -30,13 +30,19 @@
               witnessed_at = @witness.witnessed_at.in_time_zone("Central Time (US & Canada)").strftime("%b %e %l:%M %p %Z")
               witnessed_by = @witness.name || "anonymous"
             %>
-            <%= "Last reported drunk on #{witnessed_at} by #{witnessed_by}" %>
+            <% if @drunk %>
+              <%= "Last reported drunk on #{witnessed_at} by #{witnessed_by}" %>
+            <% else %>
+              <%= "Last reported drunk on #{witnessed_at} by #{witnessed_by}," %>
+              <br />
+              <%= "but we need more people to confirm" %>
+            <% end %>
           </div>
         <% end %>
 
         <div class="witness">
           <h3 class="witness-header">
-            <%= @drunk ? "Can you confirm Amogh is still drunk?" : "Is this wrong? Update it!" %>
+            <%= @drunk ? "Can you confirm Amogh is still drunk?" : "Is Amogh Drunk? Update it!" %>
           </h3>
 
           <form class="witness-form" method="post" action="/witness">
