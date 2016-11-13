@@ -13,3 +13,13 @@ get "/" do
 
   erb :index
 end
+
+post "/witness" do
+  Time.zone = "UTC"
+
+  name = params[:name]
+  name = nil if name == ""
+
+  Witness.create!(name: name, witnessed_at: Time.zone.now)
+  redirect to("/")
+end
