@@ -1,10 +1,14 @@
+require "zlib"
 require "sinatra"
 require "sinatra/activerecord"
 require "active_support"
 
 require_relative "models/witness"
 
-set :database, "sqlite3:moghy.sqlite3"
+DEFAULT_DB = "postgres://localhost/moghy"
+set :database, DEFAULT_DB
+ActiveRecord::Base.establish_connection(ENV["DATABASE_URL"] || DEFAULT_DB)
+
 Time.zone = "UTC"
 
 get "/" do

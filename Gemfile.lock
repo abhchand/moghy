@@ -18,6 +18,7 @@ GEM
     i18n (0.7.0)
     method_source (0.8.2)
     minitest (5.9.1)
+    pg (0.19.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -34,7 +35,6 @@ GEM
       activerecord (>= 3.2)
       sinatra (~> 1.0)
     slop (3.6.0)
-    sqlite3 (1.3.12)
     thread_safe (0.3.5)
     tilt (2.0.5)
     tzinfo (1.2.2)
@@ -46,11 +46,11 @@ PLATFORMS
 DEPENDENCIES
   activerecord
   activesupport (~> 5.0, >= 5.0.0.1)
+  pg
   pry
   rake
   sinatra (~> 1.4, >= 1.4.7)
   sinatra-activerecord
-  sqlite3
 
 RUBY VERSION
    ruby 2.2.2p95
