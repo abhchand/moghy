@@ -36,7 +36,7 @@
 
         <div class="witness">
           <h3 class="witness-header">
-            Is this wrong? Update it!
+            <%= @drunk ? "Can you confirm Amogh is still drunk?" : "Is this wrong? Update it!" %>
           </h3>
 
           <form class="witness-form" method="post" action="/witness">
