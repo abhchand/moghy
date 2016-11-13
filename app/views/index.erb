@@ -2,44 +2,50 @@
 <html>
     <head>
         <title>Is Amogh Drunk?</title>
+        <link rel="stylesheet" href="application.css" type="text/css" />
+        <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans" type="text/css">
     </head>
     <body>
-      <h1>Is Amogh drunk right now?</h1>
-      <div class="status">
-        <h1><%= @drunk ? "YES" : "NO" %></h1>
-      </div>
-
-      <div class="picture">
-        <%
-          url =
-            if @drunk
-              "https://scontent.fsnc1-3.fna.fbcdn.net/v/t1.0-9/1928815_517422035059_6667_n.jpg?oh=7da440217822d8e006d2fd6fe8c0a620&oe=588744D2"
-            else
-              "https://scontent.fsnc1-3.fna.fbcdn.net/t31.0-8/11884102_10101446852497919_373123423329070022_o.jpg"
-            end
-        %>
-        <img src=<%= url %> />
-      </div>
-
-      <% if @witness %>
-        <div class="last-witnessed">
-          <%
-            witnessed_at = @witness.witnessed_at.in_time_zone("Central Time (US & Canada)").strftime("%b %e %l:%M %p %Z")
-            witnessed_by = @witness.name || "anonymous"
-          %>
-          <%= "Last reported drunk on #{witnessed_at} by #{witnessed_by}" %>
+      <div class="content">
+        <br />
+        <h1>Is Amogh drunk?</h1>
+        <div class="status">
+          <h1><%= @drunk ? "YES" : "NO" %></h1>
         </div>
-      <% end %>
 
-      <div class="witness">
-        <h3 class="witness-header">
-          Is the above status wrong?
-        </h3>
+        <div class="picture">
+          <%
+            url =
+              if @drunk
+                "https://scontent.fsnc1-3.fna.fbcdn.net/v/t1.0-9/1928815_517422035059_6667_n.jpg?oh=7da440217822d8e006d2fd6fe8c0a620&oe=588744D2"
+              else
+                "https://scontent.fsnc1-3.fna.fbcdn.net/t31.0-8/11884102_10101446852497919_373123423329070022_o.jpg"
+              end
+          %>
+          <img src=<%= url %> />
+        </div>
 
-        <form class="witness-form" method="post" action="/witness">
-          I, <input type="text" name="name" placeholder="name (optional)" />, would like to note that Amogh is drunk right now
-          <input type="submit" value="report" />
-        </form>
+        <% if @witness %>
+          <div class="last-witnessed">
+            <%
+              witnessed_at = @witness.witnessed_at.in_time_zone("Central Time (US & Canada)").strftime("%b %e %l:%M %p %Z")
+              witnessed_by = @witness.name || "anonymous"
+            %>
+            <%= "Last reported drunk on #{witnessed_at} by #{witnessed_by}" %>
+          </div>
+        <% end %>
+
+        <div class="witness">
+          <h3 class="witness-header">
+            Is this wrong? Update it!
+          </h3>
+
+          <form class="witness-form" method="post" action="/witness">
+            I, <input class="witness-input" type="text" name="name" placeholder="name (optional)" />, would like to note that Amogh is drunk right now
+            <br />
+            <input class="witness-submit" type="submit" value="report" />
+          </form>
+        </div>
       </div>
     </body>
 </html>
