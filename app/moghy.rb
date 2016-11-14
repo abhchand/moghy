@@ -12,10 +12,12 @@ ActiveRecord::Base.establish_connection(ENV["DATABASE_URL"] || DEFAULT_DB)
 Time.zone = "UTC"
 
 get "/" do
-  @witness = Witness.where("witnessed_at > ?", 4.hours.ago).order(:witnessed_at)
+  recent_witness =
+    Witness.where("witnessed_at > ?", 4.hours.ago).order(:witnessed_at)
 
-  @drunk = @witness.count >= 2
-  @witness = @witness.last
+  @drunk = recent_witness.count >= 2
+  @witness = recent_witness.last
+  @all_witnesses = Witness.order(:witnessed_at).last(10)
 
   erb :index
 end

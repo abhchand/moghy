@@ -24,25 +24,18 @@
           <img src=<%= url %> />
         </div>
 
-        <% if @witness %>
-          <div class="last-witnessed">
-            <%
-              witnessed_at = @witness.witnessed_at.in_time_zone("Central Time (US & Canada)").strftime("%b %e %l:%M %p %Z")
-              witnessed_by = @witness.name || "anonymous"
-            %>
-            <% if @drunk %>
-              <%= "Last reported drunk on #{witnessed_at} by #{witnessed_by}" %>
-            <% else %>
-              <%= "Last reported drunk on #{witnessed_at} by #{witnessed_by}," %>
-              <br />
-              <%= "but we need more people to confirm" %>
-            <% end %>
-          </div>
-        <% end %>
-
         <div class="witness">
           <h3 class="witness-header">
-            <%= @drunk ? "Can you confirm Amogh is still drunk?" : "Is Amogh Drunk? Update it!" %>
+            <%=
+              case
+              when @drunk
+                "Can you confirm Amogh is still drunk?"
+              when !@drunk && @witness
+                "Amogh might be drunk, but we need more people to confirm it!"
+              when !@drunk && !@witness
+                "Is Amogh Drunk? Update it!"
+              end
+            %>
           </h3>
 
           <form class="witness-form" method="post" action="/witness">
@@ -51,6 +44,20 @@
             <input class="witness-submit" type="submit" value="report" />
           </form>
         </div>
+
+        <% if @all_witnesses.any? %>
+          <h3>Recent reports of drunkenness (Central Time)</h3>
+          <div class="last-witnessed">
+            <% @all_witnesses.reverse.each do |witness| %>
+              <%
+                witnessed_at = witness.witnessed_at.in_time_zone("Central Time (US & Canada)").strftime("%b %e %l:%M %p")
+                witnessed_by = witness.name || "anonymous"
+              %>
+              <%= "#{witnessed_at} by #{witnessed_by}" %>
+              <br />
+            <% end %>
+          </div>
+        <% end %>
 
         <br />
         <br />
