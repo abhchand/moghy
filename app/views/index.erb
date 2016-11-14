@@ -6,6 +6,11 @@
         <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans" type="text/css">
     </head>
     <body>
+      <% if flash[:error] %>
+        <div class="flash">
+          <%= flash[:error] %>
+        </div>
+      <% end %>
       <div class="content">
         <h1>Is Amogh drunk right now?</h1>
         <div class="status">
