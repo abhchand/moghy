@@ -30,8 +30,7 @@ post "/witness" do
 
   name = params[:name]
   if name.nil? || name == ""
-    require 'pry'; binding.pry
-    flash[:error] = "FOOOOOO"
+    flash[:error] = "PLEASE ENTER YOUR NAME"
     redirect to("/")
     return
   end

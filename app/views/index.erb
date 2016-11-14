@@ -11,6 +11,7 @@
           <%= flash[:error] %>
         </div>
       <% end %>
+
       <div class="content">
         <h1>Is Amogh drunk right now?</h1>
         <div class="status">
@@ -44,7 +45,7 @@
           </h3>
 
           <form class="witness-form" method="post" action="/witness">
-            I, <input class="witness-input" type="text" name="name" placeholder="name (optional)" />, would like to note that Amogh is drunk right now
+            I, <input class="witness-input" type="text" name="name" placeholder="name" />, would like to note that Amogh is drunk right now
             <br />
             <input class="witness-submit" type="submit" value="report" />
           </form>
